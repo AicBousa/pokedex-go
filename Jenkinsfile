@@ -4,8 +4,9 @@ pipeline {
         stage('Checkout: Code') {
             steps {   
                 echo "Docker version: " 
-                 docker { image 'jenkins/jenkins:alpine' }
+                
                 sh """
+               docker { image 'jenkins/jenkins:alpine' }
                docker --version
                """
             }
