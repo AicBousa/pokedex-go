@@ -1,13 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout: Code') {
+        stage('Build image') {
             steps {   
-                echo "Docker version: " 
                 
                 sh """
-               docker { image 'jenkins/jenkins:alpine' }
-               docker --version
+               docker build -t pok .
+               """
+            }
+        }
+        stage('Run test') {
+            steps {   
+                
+                sh """
+               docker run -t pok npm run test
                """
             }
         }
